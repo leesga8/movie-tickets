@@ -1,34 +1,3 @@
-// function TicketBook() {
-//   this.tickets = {};
-//   this.currentId = 0;
-// }
-
-// TicketBook.prototype.addTicket = function(ticket) {
-//   ticket.id = this.assignId();
-//   this.tickets[ticket.id] = ticket;
-// };
-
-// TicketBook.prototype.assignId = function() {
-//   this.currentId += 1;
-//   return this.currentId;
-// };
-
-// TicketBook.prototype.findTicket = function(id) {
-//   if (this.ticket[id] !=undefined) {
-//     return this.tickets[id];
-//   }
-//   return false;
-// }
-  
-// TicketBook.prototype.deleteTicket = function(id) {
-//   if (this.tickets[id] === undefined) {
-//     return false;
-//   }
-//   delete this.tickets[id];
-//   return true;
-// };
-
-
 function Ticket(movie, time, age) {
   this.movie = movie;
   this.time = time;
