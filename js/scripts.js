@@ -1,60 +1,78 @@
-function TicketBook() {
-  this.tickets = {};
-  this.currentId = 0;
-}
+// function TicketBook() {
+//   this.tickets = {};
+//   this.currentId = 0;
+// }
 
-TicketBook.prototype.addTicket = function(ticket) {
-  ticket.id = this.assignId();
-  this.tickets[ticket.id] = ticket;
-};
+// TicketBook.prototype.addTicket = function(ticket) {
+//   ticket.id = this.assignId();
+//   this.tickets[ticket.id] = ticket;
+// };
 
-TicketBook.prototype.assignId = function() {
-  this.currentId += 1;
-  return this.currentId;
-};
+// TicketBook.prototype.assignId = function() {
+//   this.currentId += 1;
+//   return this.currentId;
+// };
 
-TicketBook.prototype.findTicket = function(id) {
-  if (this.ticket[id] !=undefined) {
-    return this.tickets[id];
-  }
-  return false;
-}
+// TicketBook.prototype.findTicket = function(id) {
+//   if (this.ticket[id] !=undefined) {
+//     return this.tickets[id];
+//   }
+//   return false;
+// }
   
-TicketBook.prototype.deleteTicket = function(id) {
-  if (this.tickets[id] === undefined) {
-    return false;
-  }
-  delete this.tickets[id];
-  return true;
-};
+// TicketBook.prototype.deleteTicket = function(id) {
+//   if (this.tickets[id] === undefined) {
+//     return false;
+//   }
+//   delete this.tickets[id];
+//   return true;
+// };
 
 
-function Ticket(release, time, age) {
-  this.release = release;
+function Ticket(movie, time, age) {
+  this.movie = movie;
   this.time = time;
   this.age = age;
 }
 
-/*
-
-need of release, time, age
-
-if release > 2 weeks 25% off
-if time < 4pm tickets 25%off
-if age > 65 ticket25%off
-
-let cost = $0
-if release is new +$5 if release is old +3
-if time < 4pm +$5 if time > 4pm +$8 
-if age > 65 ticket25%off
+Ticket.prototype.cost = function() {
+  let htmlTicketInfo = $("p#cost");
+  let releasePrice = 0;
+  let timePrice = 0;
+  let agePrice = 0;
+  let total = 0;
+  
+  if(this.movie==="new"){
+    releasePrice=10;
+  } 
+  else if(this.movie==="old"){ 
+    releasePrice=5;
+  }
+  if(this.time==="afternoon"){
+    timePrice=5;
+  } 
+  else if(this.time==="evening"){ 
+    timePrice=10;
+  }
+  if (this.age==="seniors"){
+    agePrice=5;
+  } 
+  else if(this.age=="regular"){ 
+    agePrice=10;
+  }
+  total = (releasePrice + timePrice + agePrice);
+  return total;
 }
 
-display the cost in our ticket 
-
-*/
-
-/*
-
-
-
-*/
+// UI LOGIC
+$(document).ready(function(){
+  $("#ticket-info").submit(function(event){
+    event.preventDefault();
+    const movie = $("#movie").val();
+    const time = $("#time").val();
+    const age = $("#age").val();
+    let newTicket = new Ticket(movie, time, age);
+    $('.output').html(newTicket.cost());
+    $('#cost').show();
+  })
+})
